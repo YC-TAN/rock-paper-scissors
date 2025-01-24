@@ -28,7 +28,7 @@ function getComputerChoice() {
         // Use prompt method
 
 function getHumanChoice() {
-    let humanChoice = prompt("What is your choice? (rock, paper, scissors)").toLowerCase();
+    let humanChoice = prompt("What is your choice? (rock, paper, scissors)", ' ').toLowerCase();
     
     switch (humanChoice) {
         case "rock":
@@ -50,12 +50,40 @@ function getHumanChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
+// console.log(humanScore, computerScore);
+
 // 4. Write the logic to play a single round
     // Create a function: playRound
         // 2 parameters: humanChoice, computerChoice
         // Make humanChoice case-insensitive
         // Print message representing the round winner using console.log()
         // Increase the score of the winner
+
+function playRound(humanChoice, computerChoice) {
+
+    if (humanChoice === computerChoice) {
+        alert("Tie, there is no winner");
+
+    } else if (
+        (humanChoice === "rock" && computerChoice === "scissors") || 
+        (humanChoice == "scissors" && computerChoice == "paper") || 
+        (humanChoice == "paper" && computerChoice == "rock")
+    ) {
+        humanScore++;
+        alert("You win! Yay!");
+
+    } else {        
+        computerScore++;
+        alert("You lose!");
+    }
+
+    console.log(humanScore, computerScore);
+} 
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
         
 // 5. Write logic for the entire game
     // Create a function: playGame
