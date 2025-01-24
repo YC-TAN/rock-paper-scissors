@@ -41,10 +41,14 @@ function getHumanChoice() {
     }
 }
 
-console.log(getHumanChoice());
+// console.log(getHumanChoice());
+
+
 // 3. Declare players score variable
     // Create 2 global variables: humanScore, computerScore
         // Initialise with value 0
+let humanScore = 0;
+let computerScore = 0;
 
 // 4. Write the logic to play a single round
     // Create a function: playRound
