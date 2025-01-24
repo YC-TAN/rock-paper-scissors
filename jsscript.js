@@ -80,12 +80,23 @@ function playRound(humanChoice, computerChoice) {
     console.log(humanScore, computerScore);
 } 
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection);
         
 // 5. Write logic for the entire game
     // Create a function: playGame
         // Call playRound
         // Play 5 rounds
+
+function playGame() {
+
+    let round = 5;
+
+    while (round > 0) {
+        playRound(getHumanChoice(), getComputerChoice());
+        round--;
+    }
+
+    console.log(`Player Score: ${humanScore}, Computer Score: ${computerScore}`)
+}
+
+playGame();
