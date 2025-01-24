@@ -89,14 +89,22 @@ function playRound(humanChoice, computerChoice) {
 
 function playGame() {
 
-    let round = 5;
+    let rounds = 5;
 
-    while (round > 0) {
+    while (rounds > 0) {
         playRound(getHumanChoice(), getComputerChoice());
-        round--;
+        rounds--;
     }
 
     console.log(`Player Score: ${humanScore}, Computer Score: ${computerScore}`)
+
+    if (humanScore > computerScore) {
+        alert("Yay! You win the game!");
+    } else if (computerScore > humanScore) {
+        alert("Aww... You lose...");
+    } else {
+        alert("It is a tie game!");
+    }
 }
 
 playGame();
