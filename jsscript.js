@@ -1,5 +1,3 @@
-console.log("Jello")
-
 // 1. Get computer choice
     // Create a function: getComputerChoice
         // Randomly return "Rock", "Paper" or "Scissors"
@@ -21,7 +19,7 @@ function getComputerChoice() {
     // }
 }
 
-console.log(getComputerChoice());
+// console.log(getComputerChoice());
 
 
 // 2. Get human choice
@@ -29,6 +27,21 @@ console.log(getComputerChoice());
         // Return choice based on human input
         // Use prompt method
 
+function getHumanChoice() {
+    let humanChoice = prompt("What is your choice? (rock, paper, scissors)").toLowerCase();
+    
+    switch (humanChoice) {
+        case "rock":
+        case "paper":
+        case "scissors":
+            return humanChoice;
+        default:
+            alert('Please enter your choice of "rock", "paper" or "scissors".');
+            return getHumanChoice(); // Recursively prompt for valid input
+    }
+}
+
+console.log(getHumanChoice());
 // 3. Declare players score variable
     // Create 2 global variables: humanScore, computerScore
         // Initialise with value 0
