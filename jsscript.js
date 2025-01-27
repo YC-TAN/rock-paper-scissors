@@ -13,8 +13,8 @@ const gameInstruction = "Pick your choice, First to 5 wins"
 const info = document.querySelector(".info1");
 info.textContent = gameInstruction;
 
-const result = document.querySelector(".result");
-result.textContent = "Let's play!";
+const score = document.querySelector(".score");
+score.textContent = "Let's play!";
 
 
 function getComputerChoice() {
@@ -74,7 +74,7 @@ function resetClick() {
     humanScore = 0;
     computerScore = 0;
     info.textContent = gameInstruction;
-    result.textContent = "Let's play!";
+    score.textContent = "Let's play!"; 
     enableButtons();
     disableResetBtn();
 }
@@ -99,7 +99,7 @@ function playRound(humanChoice, computerChoice) {
 
     info.textContent = `You: ${humanChoice}  ||   
                         Computer: ${computerChoice}`;
-    result.textContent = `Your Score: ${humanScore} ; 
+    score.textContent = `Your Score: ${humanScore} ; 
                         Computer Score: ${computerScore}`;
 
     if (endGame()) {
