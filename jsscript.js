@@ -28,7 +28,7 @@ function disableButtons() {
 }
 
 function finalResult() {
-    return (humanScore > computerScore) ? "Yay! You won!"
+    return (humanScore > computerScore) ? "Yay! You win the game!"
         : "Aww... You lose...";
 }
 
@@ -50,7 +50,7 @@ function resetClick() {
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
-        alert("Tie, there is no winner");
+        alert(`Computer choose ${computerChoice}.\n\nTie.`);
 
     } else if (
         (humanChoice === "rock" && computerChoice === "scissors") || 
@@ -58,11 +58,11 @@ function playRound(humanChoice, computerChoice) {
         (humanChoice === "paper" && computerChoice === "rock")
     ) {
         humanScore++;
-        alert("You win this round");
+        alert(`Computer choose ${computerChoice}.\n\nYou win this round.`);
 
     } else {        
         computerScore++;
-        alert("You lose this round");
+        alert(`Computer choose ${computerChoice}.\n\nYou lose this round.`);
     }
 
     choices.textContent = `Your Choice: ${humanChoice} ; 
