@@ -1,110 +1,73 @@
-// 1. Get computer choice
-    // Create a function: getComputerChoice
-        // Randomly return "Rock", "Paper" or "Scissors"
-        // Use Math.random method
+let humanScore = 0;
+let computerScore = 0;
+
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorsBtn = document.querySelector("#scissors");
+const choices = document.querySelector(".choices");
+choices.textContent = "Let's play!";
+const result = document.querySelector(".result");
+
 function getComputerChoice() {
-    let randomChoice = Math.floor(Math.random() * 10 - 5);
+    let randomChoice = Math.floor((Math.random() - 0.5) * 10);
 
     return (randomChoice > 0) ? "rock":
         (randomChoice == 0) ? "paper":
         "scissors";
-
-
-    // if (randomChoice > 0) {
-    //     return "rock";
-    // } else if (randomChoice === 0) {
-    //     return "paper";
-    // } else if (randomChoice < 0) {
-    //     return "scissors";
-    // }
 }
 
-// console.log(getComputerChoice());
-
-
-// 2. Get human choice
-    // Create a function: getHumanChoice
-        // Return choice based on human input
-        // Use prompt method
-
-function getHumanChoice() {
-    let humanChoice = prompt("What is your choice? (rock, paper, scissors)", ' ').toLowerCase();
-    
-    switch (humanChoice) {
-        case "rock":
-        case "paper":
-        case "scissors":
-            return humanChoice;
-        default:
-            alert('Please enter your choice of "rock", "paper" or "scissors".');
-            return getHumanChoice(); // Recursively prompt for valid input
-    }
+function endGame() {
+    return humanScore === 5 || computerScore === 5;
 }
 
-// console.log(getHumanChoice());
+function disableButtons() {
+    rockBtn.disabled = true;
+    paperBtn.disabled = true;
+    scissorsBtn.disabled = true;
+}
 
-
-// 3. Declare players score variable
-    // Create 2 global variables: humanScore, computerScore
-        // Initialise with value 0
-let humanScore = 0;
-let computerScore = 0;
-
-// console.log(humanScore, computerScore);
-
-// 4. Write the logic to play a single round
-    // Create a function: playRound
-        // 2 parameters: humanChoice, computerChoice
-        // Make humanChoice case-insensitive
-        // Print message representing the round winner using console.log()
-        // Increase the score of the winner
+function finalResult() {
+    return (humanScore > computerScore) ? "Yay! You won!"
+        : "Aww... You lose...";
+}
 
 function playRound(humanChoice, computerChoice) {
-
     if (humanChoice === computerChoice) {
         alert("Tie, there is no winner");
 
     } else if (
         (humanChoice === "rock" && computerChoice === "scissors") || 
-        (humanChoice == "scissors" && computerChoice == "paper") || 
-        (humanChoice == "paper" && computerChoice == "rock")
+        (humanChoice === "scissors" && computerChoice === "paper") || 
+        (humanChoice === "paper" && computerChoice === "rock")
     ) {
         humanScore++;
-        alert("You win! Yay!");
+        alert("You win this round");
 
     } else {        
         computerScore++;
-        alert("You lose!");
+        alert("You lose this round");
     }
 
-    console.log(humanScore, computerScore);
+    choices.textContent = `Your Choice: ${humanChoice} ; 
+                        Computer Choice: ${computerChoice}`;
+    result.textContent = `Your Score: ${humanScore} ; 
+                        Computer Score: ${computerScore}`;
+
+    if (endGame()) {
+        disableButtons();
+        choices.textContent = finalResult();
+    }
+
 } 
 
 
-        
-// 5. Write logic for the entire game
-    // Create a function: playGame
-        // Call playRound
-        // Play 5 rounds
+function buttonClick(humanPick) {
+    let computerPick = getComputerChoice();
+    playRound(humanPick, computerPick);
 
-function playGame() {
-
-    let rounds = 5;
-
-    while (rounds > 0) {
-        playRound(getHumanChoice(), getComputerChoice());
-        rounds--;
-    }
-
-    console.log(`Player Score: ${humanScore}, Computer Score: ${computerScore}`)
-
-    if (humanScore > computerScore) {
-        alert("Yay! You win the game!");
-    } else if (computerScore > humanScore) {
-        alert("Aww... You lose...");
-    } else {
-        alert("It is a tie game!");
-    }
 }
 
-playGame();
+rockBtn.addEventListener('click', () => buttonClick('rock'));
+paperBtn.addEventListener('click', () => buttonClick('paper'));
+scissorsBtn.addEventListener('click', () => buttonClick('scissors'));
+
