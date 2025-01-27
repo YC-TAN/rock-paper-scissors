@@ -1,13 +1,21 @@
 let humanScore = 0;
 let computerScore = 0;
 
+// Buttons
 const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
 const scissorsBtn = document.querySelector("#scissors");
-const choices = document.querySelector(".choices");
-choices.textContent = "Let's play!";
-const result = document.querySelector(".result");
 const resetBtn = document.querySelector("#reset");
+resetBtn.style.color = "gray";
+
+// Info sections
+const gameInstruction = "Pick your choice, First to 5 wins"
+const info = document.querySelector(".info1");
+info.textContent = gameInstruction;
+
+const result = document.querySelector(".result");
+result.textContent = "Let's play!";
+
 
 function getComputerChoice() {
     let randomChoice = Math.floor((Math.random() - 0.5) * 10);
@@ -17,36 +25,60 @@ function getComputerChoice() {
         "scissors";
 }
 
+
 function endGame() {
     return humanScore === 5 || computerScore === 5;
 }
+
 
 function disableButtons() {
     rockBtn.disabled = true;
     paperBtn.disabled = true;
     scissorsBtn.disabled = true;
+
+    rockBtn.style.color = "gray";
+    paperBtn.style.color = "gray";
+    scissorsBtn.style.color = "gray";
 }
+
+function enableButtons() {
+    rockBtn.disabled = false;
+    paperBtn.disabled = false;
+    scissorsBtn.disabled = false;
+
+    rockBtn.style.color = "black";
+    paperBtn.style.color = "black";
+    scissorsBtn.style.color = "black";
+}
+
+
+function enableResetBtn() {
+    resetBtn.disabled = false;
+    resetBtn.style.color = "black";
+}
+
+
+function disableResetBtn() {
+    resetBtn.disabled = true;
+    resetBtn.style.color = "gray";
+}
+
 
 function finalResult() {
     return (humanScore > computerScore) ? "Yay! You win the game!"
         : "Aww... You lose...";
 }
 
-function reset() {
-    humanScore = 0;
-    computerScore = 0;
-    choices.textContent = "Let's play!";
-    result.textContent = "";
-
-    rockBtn.disabled = false;
-    paperBtn.disabled = false;
-    scissorsBtn.disabled = false;
-    resetBtn.disabled = true;
-}
 
 function resetClick() {
-    reset();
+    humanScore = 0;
+    computerScore = 0;
+    info.textContent = gameInstruction;
+    result.textContent = "Let's play!";
+    enableButtons();
+    disableResetBtn();
 }
+
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
@@ -65,15 +97,15 @@ function playRound(humanChoice, computerChoice) {
         alert(`Computer choose ${computerChoice}.\n\nYou lose this round.`);
     }
 
-    choices.textContent = `Your Choice: ${humanChoice} ; 
-                        Computer Choice: ${computerChoice}`;
+    info.textContent = `You: ${humanChoice}  ||   
+                        Computer: ${computerChoice}`;
     result.textContent = `Your Score: ${humanScore} ; 
                         Computer Score: ${computerScore}`;
 
     if (endGame()) {
         disableButtons();
-        choices.textContent = finalResult();
-        resetBtn.disabled = false;
+        enableResetBtn()
+        info.textContent = finalResult();
         resetBtn.addEventListener('click', () => resetClick());
     }
 
@@ -86,6 +118,7 @@ function buttonClick(humanPick) {
 
 }
 
+// Game button events
 rockBtn.addEventListener('click', () => buttonClick('rock'));
 paperBtn.addEventListener('click', () => buttonClick('paper'));
 scissorsBtn.addEventListener('click', () => buttonClick('scissors'));
