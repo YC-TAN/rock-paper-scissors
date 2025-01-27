@@ -7,6 +7,7 @@ const scissorsBtn = document.querySelector("#scissors");
 const choices = document.querySelector(".choices");
 choices.textContent = "Let's play!";
 const result = document.querySelector(".result");
+const resetBtn = document.querySelector("#reset");
 
 function getComputerChoice() {
     let randomChoice = Math.floor((Math.random() - 0.5) * 10);
@@ -29,6 +30,22 @@ function disableButtons() {
 function finalResult() {
     return (humanScore > computerScore) ? "Yay! You won!"
         : "Aww... You lose...";
+}
+
+function reset() {
+    humanScore = 0;
+    computerScore = 0;
+    choices.textContent = "Let's play!";
+    result.textContent = "";
+
+    rockBtn.disabled = false;
+    paperBtn.disabled = false;
+    scissorsBtn.disabled = false;
+    resetBtn.disabled = true;
+}
+
+function resetClick() {
+    reset();
 }
 
 function playRound(humanChoice, computerChoice) {
@@ -56,6 +73,8 @@ function playRound(humanChoice, computerChoice) {
     if (endGame()) {
         disableButtons();
         choices.textContent = finalResult();
+        resetBtn.disabled = false;
+        resetBtn.addEventListener('click', () => resetClick());
     }
 
 } 
