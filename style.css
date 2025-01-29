@@ -36,7 +36,8 @@ html {
     margin: 16px;
 }
 
-.atma-regular {
+.info1,
+.info2 {
     font-family: "Atma", serif;
     font-weight: 400;
     font-style: normal;
@@ -52,6 +53,9 @@ button {
     cursor: pointer;
     background-color: pink;
     transition-duration: 0.4s;
+    font-family: "DynaPuff", serif;
+    font-optical-sizing: auto;
+    font-style: normal
 }
 
 #reset {

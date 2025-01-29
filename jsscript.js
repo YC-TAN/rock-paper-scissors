@@ -97,10 +97,8 @@ function playRound(humanChoice, computerChoice) {
         alert(`Computer choose ${computerChoice}.\n\nYou lose this round.`);
     }
 
-    info.textContent = `You: ${humanChoice}  ||   
-                        Computer: ${computerChoice}`;
-    score.textContent = `Your Score: ${humanScore} ; 
-                        Computer Score: ${computerScore}`;
+    info.textContent = `You: ${humanChoice} ----- Computer: ${computerChoice}`;
+    score.textContent = `Your Score: ${humanScore} ----- Computer Score: ${computerScore}`;
 
     if (endGame()) {
         disableButtons();
