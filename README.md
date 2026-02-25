@@ -1,5 +1,5 @@
 # Rock-Paper-Scissors
-:point_right:https://yc-tan.github.io/rock-paper-scissors/]
+:point_right: [Play here](https://yc-tan.github.io/rock-paper-scissors/)
 
 **An interactive web-based game built with HTML, CSS and JavaScript.**
 
