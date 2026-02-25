@@ -1,6 +1,7 @@
 # Rock-Paper-Scissors
+:point_right:https://yc-tan.github.io/rock-paper-scissors/]
 
-**This is an interactive web-based game built with HTML, CSS and JavaScript. This is part of the problem solving lesson by the Odin-Project.**
+**An interactive web-based game built with HTML, CSS and JavaScript.**
 
 **Key Learning Outcomes**
 1. DOM manipulation and events
